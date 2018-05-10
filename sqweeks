@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from utils.spider import sitemapper
+from tools.sqlbuster import sqlbuster
+
+import os
+import sys
+sys.path.append(os.getcwd())
+
+
+print("Sqweeks v0.1.0")
+print("------------------------------------")
+
+
+links = sitemapper.run("https://hackyourselffirst.troyhunt.com", max_links=100, verbose=1, ignore_static_files=1)
+
+for link in links:
+    sqlbuster.run("https://hackyourselffirst.troyhunt.com/Make/1?orderby=supercarid&id=1")
